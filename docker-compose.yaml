@@ -1,0 +1,32 @@
+services:
+  client:
+    build: ./client
+    container_name: note-app-frontend
+    ports:
+      - '80:80'
+    depends_on:
+      - app
+    restart: always
+
+  app:
+    build: .
+    container_name: note-app-backend
+    ports:
+      - '3000:3000'
+    env_file:
+      - ./backend/.env
+    depends_on:
+      - mongo
+    restart: always
+
+  mongo:
+    image: mongo
+    container_name: note-app-db
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo_data:/data/db
+    restart: always
+
+volumes:
+  mongo_data:

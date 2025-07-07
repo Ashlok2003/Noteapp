@@ -1,0 +1,11 @@
+node_modules
+dist
+.env
+*.log
+.git
+.gitignore
+Dockerfile
+Makefile
+README.md
+src/**/*.ts
+tests
