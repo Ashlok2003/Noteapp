@@ -16,7 +16,7 @@ export function Navbar() {
     useState(false);
 
   return (
-    <div className="fixed top-0 w-full z-20 border-b shadow-md px-4 sm:px-6 lg:px-8">
+    <div className="fixed top-0 w-full z-20 border-b px-4 sm:px-6 lg:px-8">
       <NavbarWrapper>
         <NavBody>
           <NavbarLogo />

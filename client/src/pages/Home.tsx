@@ -16,7 +16,7 @@ export function Home() {
         )}
       />
 
-      <h1 className="text-4xl md:text-6xl  font-extrabold tracking-tight mb-4 leading-tight">
+      <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 leading-tight">
         Welcome to{' '}
         <span className="text-primary">Noteapp</span>
       </h1>

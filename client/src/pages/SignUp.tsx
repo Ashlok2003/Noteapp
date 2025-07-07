@@ -43,7 +43,7 @@ export function SignUp() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="flex flex-col items-center justify-between lg:flex-row w-full h-full ml-4"
+        className="flex flex-col items-center justify-between lg:flex-row w-full h-full"
       >
         <Card className="w-full max-w-[400px] lg:border-none lg:shadow-none bg-background">
           <CardHeader className="flex justify-between items-center p-6">
