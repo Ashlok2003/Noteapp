@@ -1,5 +1,5 @@
 import { EmailForm } from '@/components/auth/email-form';
-import { GoogleButton } from '@/components/auth/google-button';
+import GoogleAuth from '@/components/auth/google-button';
 import { OTPForm } from '@/components/auth/otp-form';
 import { ThemeToggle } from '@/components/common/theme-toggle';
 import { Button } from '@/components/ui/button';
@@ -21,6 +21,10 @@ export default function LoginPage() {
     'email',
   );
   const [email, setEmail] = useState('');
+  const [token, setToken] = useState<string | null>(
+    localStorage.getItem('token') || null,
+  );
+
   const navigate = useNavigate();
 
   const handleEmailSuccess = (email: string) => {
@@ -38,6 +42,17 @@ export default function LoginPage() {
   const goBack = () => {
     setStep('email');
   };
+
+  const handleLoginSuccess = (newToken: string) => {
+    setToken(newToken);
+    localStorage.setItem('token', newToken);
+    navigate('/dashboard');
+  };
+
+  if (token) {
+    navigate('/dashboard');
+    return null; // Prevent rendering if already logged in
+  }
 
   return (
     <div className="min-h-screen w-full bg-background flex items-center justify-center p-4">
@@ -104,7 +119,9 @@ export default function LoginPage() {
                         OR CONTINUE WITH GOOGLE
                       </span>
                     </div>
-                    <GoogleButton />
+                    <GoogleAuth
+                      onSuccess={handleLoginSuccess}
+                    />
                     <Button
                       asChild
                       variant="outline"
