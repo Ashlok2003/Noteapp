@@ -43,9 +43,9 @@ export function SignUp() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="flex flex-col items-center justify-between lg:flex-row w-full h-full"
+        className="flex flex-col items-center justify-center-safe lg:flex-row w-full h-full"
       >
-        <Card className="w-full max-w-[400px] lg:border-none lg:shadow-none bg-background">
+        <Card className="w-full max-w-[400px] border-none shadow-none bg-background">
           <CardHeader className="flex justify-between items-center p-6">
             <div className="text-2xl font-bold text-primary">
               HD
@@ -123,7 +123,7 @@ export function SignUp() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="hidden lg:block flex-1 relative min-h-screen"
+          className="hidden lg:block flex-1 relative min-h-screen w-full"
         >
           <img
             src="/right-column.png"
