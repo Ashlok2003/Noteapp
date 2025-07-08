@@ -10,11 +10,11 @@ import { motion } from 'framer-motion';
 import { Loader, Send, ShieldCheck } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 import { z } from 'zod';
 import { Separator } from '../ui/separator';
 import GoogleAuth from './google-button';
-import { useNavigate } from 'react-router-dom';
 
 const signInSchema = z.object({
   email: z.string().email({ message: 'Enter a valid email' }),
@@ -78,26 +78,27 @@ export function SignInForm() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
     >
-      {step === 'idle' && (
-        <div className="grid gap-2">
-          <Label>Email</Label>
-          <Input
-            {...form.register('email')}
-            placeholder="example@gmail.com"
-            className="bg-background border-input rounded-lg"
-            disabled={loading}
-          />
-          {form.formState.errors.email && (
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="text-sm text-destructive"
-            >
-              {form.formState.errors.email.message}
-            </motion.p>
-          )}
-        </div>
-      )}
+      {step === 'idle' ||
+        (step == 'existing' && (
+          <div className="grid gap-2">
+            <Label>Email</Label>
+            <Input
+              {...form.register('email')}
+              placeholder="example@gmail.com"
+              className="bg-background border-input rounded-lg"
+              disabled={loading}
+            />
+            {form.formState.errors.email && (
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="text-sm text-destructive"
+              >
+                {form.formState.errors.email.message}
+              </motion.p>
+            )}
+          </div>
+        ))}
 
       {step === 'otp_pending' && (
         <div className="grid gap-2">

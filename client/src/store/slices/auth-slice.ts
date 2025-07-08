@@ -13,7 +13,7 @@ interface AuthState {
   token: string | null;
   loading: boolean;
   error?: string;
-  step: 'idle' | 'otp_pending' | 'verified';
+  step: 'idle' | 'otp_pending' | 'verified' | 'existing';
   mode: 'signup' | 'signin';
 }
 
@@ -109,6 +109,7 @@ const authSlice = createSlice({
       })
       .addCase(signup.rejected, (state, action) => {
         state.loading = false;
+        state.step = 'existing';
         state.error = action.payload as string;
       })
 

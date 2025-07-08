@@ -17,6 +17,7 @@ import { useNavigate } from 'react-router-dom';
 import { z } from 'zod';
 import { Separator } from '../ui/separator';
 import GoogleAuth from './google-button';
+import { toast } from 'sonner';
 
 const signUpSchema = z.object({
   name: z.string().min(1, 'Name is required'),
@@ -30,7 +31,7 @@ type FormData = z.infer<typeof signUpSchema>;
 export function SignUpForm() {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
-  const { user, loading, token, error } = useSelector((s: RootState) => s.auth);
+  const { user, loading, token, error, step } = useSelector((s: RootState) => s.auth);
 
   const [dobOpen, setDobOpen] = useState(false);
   const [isPending, startTransition] = useTransition();
@@ -45,10 +46,17 @@ export function SignUpForm() {
   useEffect(() => {
     if (token) {
       navigate('/dashboard');
-    } else if (error && otpPending) {
+    }
+
+    if (error && step === 'existing') {
+      form.setError('email', { message: error });
+      toast.info('This email is already registered. Please sign in instead.');
+    }
+
+    if (error && otpPending) {
       form.setError('otp', { message: error });
     }
-  }, [token, error, navigate, otpPending, form]);
+  }, [token, error, step, navigate, otpPending, form]);
 
   const handleSubmit = (data: FormData) => {
     startTransition(() => {
