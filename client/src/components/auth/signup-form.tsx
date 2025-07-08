@@ -9,12 +9,15 @@ import { Label } from '@/components/ui/label';
 import { Loader, Send, ShieldCheck } from 'lucide-react';
 import { useDispatch, useSelector } from 'react-redux';
 import type { AppDispatch, RootState } from '@/store';
-import { signup, verifyOtp } from '@/store/slices/auth-slice';
+import { signin, signup, verifyOtp } from '@/store/slices/auth-slice';
 import { Calendar } from '@/components/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
+import { Separator } from '../ui/separator';
+import GoogleAuth from './google-button';
+import { toast } from 'sonner';
 
 const signUpSchema = z.object({
   name: z.string().min(1, 'Name is required'),
@@ -147,7 +150,11 @@ export function SignUpForm() {
         </div>
       )}
 
-      <Button type="submit" className="w-full" disabled={loading}>
+      <Button
+        type="submit"
+        className="w-full bg-blue-600 text-white hover:bg-blue-700 rounded-lg"
+        disabled={loading}
+      >
         {loading || isPending ? (
           <>
             <Loader className="w-4 h-4 animate-spin mr-2" />
@@ -165,6 +172,18 @@ export function SignUpForm() {
           </>
         )}
       </Button>
+      <Separator />
+      <GoogleAuth
+        context="signup"
+        onSuccess={(googleEmail) => {
+          dispatch(signin({ email: googleEmail }))
+            .unwrap()
+            .then(() => {
+              toast.success(`OTP sent to ${googleEmail}`);
+            })
+            .catch((err) => toast.error(err || 'Failed to send OTP'));
+        }}
+      />
     </motion.form>
   );
 }

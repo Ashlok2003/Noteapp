@@ -164,7 +164,7 @@ export function SignInForm() {
         )}
       </Button>
 
-      <Separator className="my-2" />
+      <Separator />
 
       <GoogleAuth
         context="signin"
