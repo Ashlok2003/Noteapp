@@ -14,14 +14,18 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { Edit2, Plus, Save, Trash, User } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 export function Dashboard() {
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
 
   const { notes, loading: notesLoading } = useSelector((state: RootState) => state.notes);
   const { user, token, loading: userLoading } = useSelector((state: RootState) => state.auth);
 
-  console.log(notes);
+  if (!user || !token) {
+    navigate('/signin');
+  }
 
   const [newNote, setNewNote] = useState('');
   const [editingNoteId, setEditingNoteId] = useState<string | null>(null);
@@ -29,7 +33,7 @@ export function Dashboard() {
 
   useEffect(() => {
     dispatch(fetchNotes(token!));
-  }, [dispatch, token]);
+  }, [dispatch, token, user]);
 
   const handleAddNote = () => {
     if (newNote.trim()) {

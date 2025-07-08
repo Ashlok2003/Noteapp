@@ -21,7 +21,9 @@ interface UpdateNoteRequest extends Request {
 
 export const getAllNotes = async (req: Request, res: Response): Promise<void> => {
   try {
-    const notes = await Note.find({});
+    const userId = req.user?.id;
+
+    const notes = await Note.find({ userId });
 
     const formattedNotes = notes.map((note) => ({
       id: note._id!.toString(),
