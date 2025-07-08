@@ -1,23 +1,22 @@
-import { useEffect, useState, useTransition } from 'react';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
+import { Calendar } from '@/components/ui/calendar';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Loader, Send, ShieldCheck } from 'lucide-react';
-import { useDispatch, useSelector } from 'react-redux';
-import type { AppDispatch, RootState } from '@/store';
-import { signin, signup, verifyOtp } from '@/store/slices/auth-slice';
-import { Calendar } from '@/components/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { cn } from '@/lib/utils';
+import type { AppDispatch, RootState } from '@/store';
+import { signup, verifyOtp } from '@/store/slices/auth-slice';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { format } from 'date-fns';
+import { motion } from 'framer-motion';
+import { Loader, Send, ShieldCheck } from 'lucide-react';
+import { useEffect, useState, useTransition } from 'react';
+import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { z } from 'zod';
 import { Separator } from '../ui/separator';
 import GoogleAuth from './google-button';
-import { toast } from 'sonner';
 
 const signUpSchema = z.object({
   name: z.string().min(1, 'Name is required'),
@@ -173,17 +172,7 @@ export function SignUpForm() {
         )}
       </Button>
       <Separator />
-      <GoogleAuth
-        context="signup"
-        onSuccess={(googleEmail) => {
-          dispatch(signin({ email: googleEmail }))
-            .unwrap()
-            .then(() => {
-              toast.success(`OTP sent to ${googleEmail}`);
-            })
-            .catch((err) => toast.error(err || 'Failed to send OTP'));
-        }}
-      />
+      <GoogleAuth context="signup" />
     </motion.form>
   );
 }

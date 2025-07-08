@@ -192,12 +192,15 @@ export const googleLogin = async (req: GoogleLoginRequest, res: Response): Promi
     }
 
     let user = await User.findOne({ email: payload.email });
+    const { email, name, sub } = payload;
+
     if (!user) {
       user = await User.create({
-        email: payload.email,
-        googleId: payload.sub,
+        email: email,
+        name: name,
+        googleId: sub,
       });
-    } else if (user.googleId && user.googleId !== payload.sub) {
+    } else if (user.googleId && user.googleId !== sub) {
       res.status(400).json({
         message: 'Account linked to a different Google account',
       } as const);
@@ -212,9 +215,10 @@ export const googleLogin = async (req: GoogleLoginRequest, res: Response): Promi
     res.status(200).json({
       message: 'Login successful',
       token,
-      user: { email: user.email },
+      user: { email: user.email, name },
     } as const);
   } catch (error) {
+    console.error(error);
     res.status(500).json({
       message: 'Server error',
       error: (error as Error).message,

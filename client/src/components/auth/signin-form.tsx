@@ -165,18 +165,7 @@ export function SignInForm() {
       </Button>
 
       <Separator />
-
-      <GoogleAuth
-        context="signin"
-        onSuccess={(googleEmail) => {
-          dispatch(signin({ email: googleEmail }))
-            .unwrap()
-            .then(() => {
-              toast.success(`OTP sent to ${googleEmail}`);
-            })
-            .catch((err) => toast.error(err || 'Failed to send OTP'));
-        }}
-      />
+      <GoogleAuth context="signin" />
     </motion.form>
   );
 }
