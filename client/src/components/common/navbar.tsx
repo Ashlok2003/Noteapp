@@ -37,7 +37,11 @@ export function Navbar() {
           <div className="flex items-center gap-4">
             <ThemeToggle />
             {isLoggedIn ? (
-              <NavbarButton onClick={handleLogout} variant="dark" className="rounded-2xl font-bold">
+              <NavbarButton
+                onClick={handleLogout}
+                variant="secondary"
+                className="rounded-2xl font-bold hover:underline underline-offset-2 text-blue-500"
+              >
                 Logout
               </NavbarButton>
             ) : (
@@ -66,8 +70,8 @@ export function Navbar() {
                     handleLogout();
                     setIsMobileMenuOpen(false);
                   }}
-                  variant="dark"
-                  className="w-full rounded-2xl font-bold"
+                  variant="secondary"
+                  className="w-full rounded-2xl font-bold text-blue-500 hover:underline underline-offset-2"
                 >
                   Logout
                 </NavbarButton>

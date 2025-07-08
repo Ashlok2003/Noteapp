@@ -65,9 +65,9 @@ export function Dashboard() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
         >
-          <Card className="overflow-hidden">
-            <CardHeader>
-              <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+          <Card className="overflow-hidden border-none shadow-none">
+            <CardHeader className="w-full p-6">
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 text-center sm:text-left mx-auto md:mx-0">
                 <div>
                   <CardTitle className="text-3xl font-bold tracking-tight">Dashboard</CardTitle>
                   <p className="text-muted-foreground mt-1">
@@ -76,7 +76,7 @@ export function Dashboard() {
                 </div>
                 <div className="flex items-center gap-3 bg-background p-3 rounded-lg">
                   <User className="text-primary" />
-                  <div className="text-right">
+                  <div className="text-center">
                     <p className="font-medium">{user?.name || 'Guest'}</p>
                     <p className="text-xs text-muted-foreground">{user?.email || ''}</p>
                   </div>
@@ -84,7 +84,7 @@ export function Dashboard() {
               </div>
             </CardHeader>
 
-            <CardContent className="pt-6">
+            <CardContent>
               <div className="flex flex-col sm:flex-row gap-2">
                 <Input
                   value={newNote}
