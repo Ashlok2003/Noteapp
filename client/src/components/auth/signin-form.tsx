@@ -165,9 +165,7 @@ export function SignInForm() {
       </Button>
 
       <Separator />
-      <div className="w-full">
-        <GoogleAuth context="signin" />
-      </div>
+      <GoogleAuth context="signin" />
     </motion.form>
   );
 }

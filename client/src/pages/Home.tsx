@@ -1,6 +1,7 @@
 import { AnimatedGridPattern } from '@/components/ui/animated-grid-pattern';
 import { InteractiveHoverButton } from '@/components/ui/interactive-hover-button';
 import { cn } from '@/lib/utils';
+import { Link } from 'react-router-dom';
 
 export function Home() {
   return (
@@ -17,17 +18,15 @@ export function Home() {
       />
 
       <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 leading-tight">
-        Welcome to{' '}
-        <span className="text-primary">Noteapp</span>
+        Welcome to <span className="text-primary">Noteapp</span>
       </h1>
 
       <p className="max-w-xl text-base italic md:text-lg text-muted-foreground mb-8">
-        Capture your thoughts, organize your ideas, and keep
-        everything in one secure place.
+        Capture your thoughts, organize your ideas, and keep everything in one secure place.
       </p>
 
       <InteractiveHoverButton>
-        Get Started
+        <Link to="/signin">Get Started</Link>
       </InteractiveHoverButton>
     </div>
   );

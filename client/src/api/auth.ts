@@ -22,7 +22,7 @@ export const OTPVerify = async (payload: { email: string; otp: string }) => {
 
 export const googleAuth = async (idToken: string) => {
   const res = await axios.post(
-    '/users/google-auth',
+    '/users/google',
     { idToken },
     { headers: { 'Content-Type': 'application/json' } },
   );
