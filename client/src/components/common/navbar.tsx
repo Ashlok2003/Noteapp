@@ -37,11 +37,7 @@ export function Navbar() {
           <div className="flex items-center gap-4">
             <ThemeToggle />
             {isLoggedIn ? (
-              <NavbarButton
-                onClick={handleLogout}
-                variant="gradient"
-                className="rounded-4xl font-bold"
-              >
+              <NavbarButton onClick={handleLogout} variant="dark" className="rounded-2xl font-bold">
                 Logout
               </NavbarButton>
             ) : (
@@ -70,8 +66,8 @@ export function Navbar() {
                     handleLogout();
                     setIsMobileMenuOpen(false);
                   }}
-                  variant="gradient"
-                  className="w-full rounded-4xl font-bold"
+                  variant="dark"
+                  className="w-full rounded-2xl font-bold"
                 >
                   Logout
                 </NavbarButton>
