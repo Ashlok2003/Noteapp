@@ -11,12 +11,9 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-export const sendOtpEmail = async (
-  to: string,
-  otp: string,
-): Promise<void> => {
+export const sendOtpEmail = async (to: string, otp: string): Promise<void> => {
   const mailOptions = {
-    from: `"Noteapp" <${process.env.SMTP_USER}>`,
+    from: `Noteapp <${process.env.APP_OWNER}>`,
     to,
     subject: 'Your OTP Code',
     html: `<p>Your OTP code is:</p><h2>${otp}</h2><p>It is valid for 10 minutes.</p>`,
