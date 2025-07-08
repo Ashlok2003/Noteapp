@@ -78,27 +78,26 @@ export function SignInForm() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
     >
-      {step === 'idle' ||
-        (step === 'existing' && (
-          <div className="grid gap-2">
-            <Label>Email</Label>
-            <Input
-              {...form.register('email')}
-              placeholder="example@gmail.com"
-              className="bg-background border-input rounded-lg"
-              disabled={loading}
-            />
-            {form.formState.errors.email && (
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="text-sm text-destructive"
-              >
-                {form.formState.errors.email.message}
-              </motion.p>
-            )}
-          </div>
-        ))}
+      {(step === 'idle' || step === 'existing') && (
+        <div className="grid gap-2">
+          <Label>Email</Label>
+          <Input
+            {...form.register('email')}
+            placeholder="example@gmail.com"
+            className="bg-background border-input rounded-lg"
+            disabled={loading}
+          />
+          {form.formState.errors.email && (
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-sm text-destructive"
+            >
+              {form.formState.errors.email.message}
+            </motion.p>
+          )}
+        </div>
+      )}
 
       {step === 'otp_pending' && (
         <div className="grid gap-2">
