@@ -13,7 +13,7 @@ const app: Express = express();
 const allowedOrigins = [
   'http://localhost:5173',
   'http://localhost:5174',
-  'https://your-production-domain.com',
+  'https://noteapp-theta-gray.vercel.app',
 ];
 
 const corsOptions: cors.CorsOptions = {
