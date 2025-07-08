@@ -1,11 +1,6 @@
 import { cn } from '@/lib/utils';
 import { IconMenu2, IconX } from '@tabler/icons-react';
-import {
-  motion,
-  AnimatePresence,
-  useScroll,
-  useMotionValueEvent,
-} from 'motion/react';
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'motion/react';
 
 import React, { useRef, useState } from 'react';
 
@@ -47,10 +42,7 @@ interface MobileNavMenuProps {
   onClose: () => void;
 }
 
-export const Navbar = ({
-  children,
-  className,
-}: NavbarProps) => {
+export const Navbar = ({ children, className }: NavbarProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll({
     target: ref,
@@ -67,13 +59,7 @@ export const Navbar = ({
   });
 
   return (
-    <motion.div
-      ref={ref}
-      className={cn(
-        'sticky inset-x-0 top-20 z-40 w-full',
-        className,
-      )}
-    >
+    <motion.div ref={ref} className={cn('sticky inset-x-0 top-20 z-40 w-full', className)}>
       {React.Children.map(children, (child) =>
         React.isValidElement(child)
           ? React.cloneElement(
@@ -88,11 +74,7 @@ export const Navbar = ({
   );
 };
 
-export const NavBody = ({
-  children,
-  className,
-  visible,
-}: NavBodyProps) => {
+export const NavBody = ({ children, className, visible }: NavBodyProps) => {
   return (
     <motion.div
       animate={{
@@ -122,14 +104,8 @@ export const NavBody = ({
   );
 };
 
-export const NavItems = ({
-  items,
-  className,
-  onItemClick,
-}: NavItemsProps) => {
-  const [hovered, setHovered] = useState<number | null>(
-    null,
-  );
+export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
+  const [hovered, setHovered] = useState<number | null>(null);
 
   return (
     <motion.div
@@ -160,11 +136,7 @@ export const NavItems = ({
   );
 };
 
-export const MobileNav = ({
-  children,
-  className,
-  visible,
-}: MobileNavProps) => {
+export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
   return (
     <motion.div
       animate={{
@@ -194,27 +166,15 @@ export const MobileNav = ({
   );
 };
 
-export const MobileNavHeader = ({
-  children,
-  className,
-}: MobileNavHeaderProps) => {
+export const MobileNavHeader = ({ children, className }: MobileNavHeaderProps) => {
   return (
-    <div
-      className={cn(
-        'flex w-full flex-row items-center justify-between',
-        className,
-      )}
-    >
+    <div className={cn('flex w-full flex-row items-center justify-between', className)}>
       {children}
     </div>
   );
 };
 
-export const MobileNavMenu = ({
-  children,
-  className,
-  isOpen,
-}: MobileNavMenuProps) => {
+export const MobileNavMenu = ({ children, className, isOpen }: MobileNavMenuProps) => {
   return (
     <AnimatePresence>
       {isOpen && (
@@ -234,23 +194,11 @@ export const MobileNavMenu = ({
   );
 };
 
-export const MobileNavToggle = ({
-  isOpen,
-  onClick,
-}: {
-  isOpen: boolean;
-  onClick: () => void;
-}) => {
+export const MobileNavToggle = ({ isOpen, onClick }: { isOpen: boolean; onClick: () => void }) => {
   return isOpen ? (
-    <IconX
-      className="text-black dark:text-white"
-      onClick={onClick}
-    />
+    <IconX className="text-black dark:text-white" onClick={onClick} />
   ) : (
-    <IconMenu2
-      className="text-black dark:text-white"
-      onClick={onClick}
-    />
+    <IconMenu2 className="text-black dark:text-white" onClick={onClick} />
   );
 };
 
@@ -260,15 +208,8 @@ export const NavbarLogo = () => {
       href="#"
       className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-black"
     >
-      <img
-        src="https://assets.aceternity.com/logo-dark.png"
-        alt="logo"
-        width={30}
-        height={30}
-      />
-      <span className="font-medium text-black dark:text-white">
-        Noteapp
-      </span>
+      <img src="/top.png" alt="logo" width={30} height={30} />
+      <span className="text-xl font-bold text-black dark:text-white">HD</span>
     </a>
   );
 };
@@ -286,10 +227,7 @@ export const NavbarButton = ({
   children: React.ReactNode;
   className?: string;
   variant?: 'primary' | 'secondary' | 'dark' | 'gradient';
-} & (
-  | React.ComponentPropsWithoutRef<'a'>
-  | React.ComponentPropsWithoutRef<'button'>
-)) => {
+} & (React.ComponentPropsWithoutRef<'a'> | React.ComponentPropsWithoutRef<'button'>)) => {
   const baseStyles =
     'px-4 py-2 rounded-md bg-white button bg-white text-black text-sm font-bold relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center';
 
@@ -305,11 +243,7 @@ export const NavbarButton = ({
   return (
     <Tag
       href={href || undefined}
-      className={cn(
-        baseStyles,
-        variantStyles[variant],
-        className,
-      )}
+      className={cn(baseStyles, variantStyles[variant], className)}
       {...props}
     >
       {children}

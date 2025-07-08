@@ -14,7 +14,7 @@ export function SignIn() {
           transition={{ duration: 0.3 }}
           className="space-y-6"
         >
-          <div className="text-start">
+          <div className="lg:text-start text-center">
             <CardTitle className="text-2xl font-bold">Sign In</CardTitle>
             <CardDescription>Please login to continue to your account.</CardDescription>
           </div>

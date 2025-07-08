@@ -1,3 +1,4 @@
+import { NavbarLogo } from '@/components/ui/resizable-navbar';
 import { motion } from 'framer-motion';
 import { Outlet } from 'react-router-dom';
 
@@ -11,7 +12,10 @@ export function LoginLayout() {
         className="flex flex-col items-center justify-center lg:flex-row w-full h-full"
       >
         <div className="flex flex-col items-center justify-center w-full lg:w-1/3 p-4">
-          <div className="mt-20">
+          <div className="w-full flex justify-center lg:justify-start">
+            <NavbarLogo />
+          </div>
+          <div className="-mt-8 lg:mt-20">
             <Outlet />
           </div>
         </div>
