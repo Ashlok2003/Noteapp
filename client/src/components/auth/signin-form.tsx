@@ -79,7 +79,7 @@ export function SignInForm() {
       transition={{ duration: 0.3 }}
     >
       {step === 'idle' ||
-        (step == 'existing' && (
+        (step === 'existing' && (
           <div className="grid gap-2">
             <Label>Email</Label>
             <Input
