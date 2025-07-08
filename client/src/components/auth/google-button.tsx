@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { googleAuth } from '@/api/auth';
+import { setUserAndToken } from '@/store/slices/auth-slice';
 import { GoogleLogin, type Context } from '@react-oauth/google';
-import axios, { AxiosError } from 'axios';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
-import { useDispatch } from 'react-redux';
-import { setUserAndToken } from '@/store/slices/auth-slice';
 
 interface GoogleAuthProps {
   context: Context;
@@ -21,26 +22,14 @@ const GoogleAuth = ({ context }: GoogleAuthProps) => {
         throw new Error('Credential not received from Google');
       }
 
-      const res = await axios.post<{
-        message: string;
-        token: string;
-        user: { email: string };
-      }>(
-        'http://localhost:5000/api/users/google',
-        { idToken: credential },
-        { headers: { 'Content-Type': 'application/json' } },
-      );
+      const data = await googleAuth(credential);
+      toast.success(data.message);
 
-      toast.success(res.data.message);
-
-      dispatch(setUserAndToken({ user: res.data.user, token: res.data.token }));
-
+      dispatch(setUserAndToken({ user: data.user, token: data.token }));
       navigate('/dashboard');
-    } catch (error) {
-      const axiosError = error as AxiosError<{ message: string }>;
-      const errorMessage =
-        axiosError.response?.data?.message || (error as Error).message || 'Google login failed';
-      toast.error(errorMessage);
+    } catch (err: any) {
+      const message = err.response?.data?.message || err.message || 'Google login failed';
+      toast.error(message);
     }
   };
 
