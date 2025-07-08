@@ -11,12 +11,9 @@ function App() {
   return (
     <div className="flex flex-col items-center justify-center">
       <Routes>
+        <Route path="/" element={<Home />} />
         <Route element={<ApplicationLayout />}>
-          <Route path="/" element={<Home />} />
-          <Route
-            path="/dashboard"
-            element={<Dashboard />}
-          />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Route>
         <Route element={<LoginLayout />}>
           <Route path="/signin" element={<SignIn />} />

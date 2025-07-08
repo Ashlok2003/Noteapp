@@ -11,7 +11,7 @@ export function ApplicationLayout() {
 
   useEffect(() => {
     if (!isLoggedIn) {
-      navigate('/login', { replace: true });
+      navigate('/signin', { replace: true });
     }
   }, [isLoggedIn, navigate]);
 
