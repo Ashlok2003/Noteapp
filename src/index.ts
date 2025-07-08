@@ -39,6 +39,10 @@ app.get('/healthz', (req: Request, res: Response) => {
   res.status(200).send('OK');
 });
 
+app.get('/', (req: Request, res: Response) => {
+  res.status(200).send('OK');
+});
+
 app.use(errorHandler);
 
 const PORT: number = parseInt(process.env.PORT || '5000', 10);

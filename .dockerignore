@@ -7,5 +7,5 @@ dist
 Dockerfile
 Makefile
 README.md
-src/**/*.ts
 tests
+client
