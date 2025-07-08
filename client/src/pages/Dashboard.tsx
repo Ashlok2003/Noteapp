@@ -93,7 +93,7 @@ export function Dashboard() {
                   className="flex-1 shadow-sm"
                   onKeyDown={(e) => e.key === 'Enter' && handleAddNote()}
                 />
-                <Button onClick={handleAddNote} className="gap-1 shadow">
+                <Button onClick={handleAddNote} className="gap-1 shadow bg-blue-500 text-white">
                   <Plus size={16} />
                   Create Note
                 </Button>
