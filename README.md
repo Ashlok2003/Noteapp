@@ -66,26 +66,6 @@ pnpm dev
 ```bash
 pnpm dev
 ```
-
----
-
-## Lint & Format
-
-### Frontend
-
-```bash
-cd client
-pnpm lint
-pnpm format
-```
-
-### Backend
-
-```bash
-pnpm lint
-pnpm format
-```
-
 ---
 
 ## Build
