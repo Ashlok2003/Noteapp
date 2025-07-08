@@ -31,7 +31,7 @@ export const protect = (
   try {
     const decoded = jwt.verify(
       token,
-      process.env.JWT_SECRET || 'your-secret-key',
+      process.env.JWT_SECRET || 'ashlokchaudhary',
     ) as JwtPayload & { id: string };
     req.user = { id: decoded.id };
     next();

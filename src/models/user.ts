@@ -5,8 +5,9 @@ import mongoose, {
 } from 'mongoose';
 
 export interface IUser extends Document {
+  name: string;
   email: string;
-  password?: string;
+  dob: string;
   googleId?: string;
   otp?: string;
   otpExpiry?: Date;
@@ -16,12 +17,16 @@ export interface IUser extends Document {
 interface UserModel extends Model<IUser> {}
 
 const userSchema = new Schema<IUser, UserModel>({
+  name: {
+    type: String,
+    required: true,
+  },
   email: {
     type: String,
     required: true,
     unique: true,
   },
-  password: {
+  dob: {
     type: String,
     required: true,
   },

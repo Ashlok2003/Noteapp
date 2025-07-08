@@ -1,13 +1,20 @@
-import { GoogleLogin } from '@react-oauth/google';
+import {
+  GoogleLogin,
+  type Context,
+} from '@react-oauth/google';
 import axios, { AxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 
 interface GoogleAuthProps {
   onSuccess: (token: string) => void;
+  context: Context;
 }
 
-const GoogleAuth = ({ onSuccess }: GoogleAuthProps) => {
+const GoogleAuth = ({
+  onSuccess,
+  context,
+}: GoogleAuthProps) => {
   const navigate = useNavigate();
 
   const handleSuccess = async (credentialResponse: {
@@ -54,6 +61,12 @@ const GoogleAuth = ({ onSuccess }: GoogleAuthProps) => {
   return (
     <div className="w-full">
       <GoogleLogin
+        context={context}
+        text={
+          context == 'signin'
+            ? 'signin_with'
+            : 'signup_with'
+        }
         onSuccess={handleSuccess}
         onError={() => {
           toast.error('Google login failed');
